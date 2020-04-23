@@ -1,15 +1,21 @@
-import pygame
+from pynput import keyboard
 from playsound import playsound
 import string
-
-pygame.init()
 
 spam = []
 
 sounds_dir = "sounds/"
 
+def on_press(key):
+    try:
+        playsound(sounds_dir+key.char+".wav",False)
+    except:
+        pass
+        # print("Bad character")
+
+listener = keyboard.Listener(
+    on_press=on_press)
+listener.start()
+
 while True:
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.unicode in string.ascii_lowercase:
-                playsound(sounds_dir+event.unicode+".wav",False)
+    continue
